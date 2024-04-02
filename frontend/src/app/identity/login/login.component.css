@@ -1,0 +1,27 @@
+.big-container{
+    /* background-color: var(--primary-color); */
+    background: linear-gradient(to bottom right,  #012d38, #023e48, #18817f, #299d92);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.small-container{
+    height: 70%;
+    width: 75%;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+}
+
+.left-container{
+    width: 50%;
+    height: 100%;
+    background-color: rebeccapurple;
+}
+
+.img{
+    height: 100%;
+    width: 100%;
+}

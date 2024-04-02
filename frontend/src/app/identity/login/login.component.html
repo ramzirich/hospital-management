@@ -1,0 +1,45 @@
+<div class="big-container">
+    <div class="small-container">
+        <div class="left-container">
+            <img class="img" src="../../../assets/images/Hospital.jpg">
+        </div>
+        <div class="right-container">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <label>Email</label>
+                    <input type="email" formControlName="email">
+                    <div *ngIf="formControls['email'].invalid && (formControls['email'].dirty || formControls['email'].touched)">
+                      <div *ngIf="formControls['email'].errors?.['required']">Email is required</div>
+                      <div *ngIf="formControls['email'].errors?.['email']">Invalid email format</div>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Password</label>
+                    <input type="password" formControlName="password">
+                    <div *ngIf="formControls['password'].invalid && (formControls['password'].dirty || formControls['password'].touched)">
+                      <div *ngIf="formControls['password'].errors?.['required']">Password is required</div>
+                      <div *ngIf="formControls['password'].errors?.['minlength']">Password must be at least 8 characters</div>
+                      <div *ngIf="formControls['password'].errors?.['invalidPassword']">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character</div>
+                    </div>
+                  </div>
+                  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                <!-- <app-input label="Email" tooltip="Enter ypur email"
+                    [validation]="login.email.touched && email.errors? email.errors:{}"
+                >
+                    <input type="text" class="form-control" 
+                    formControlName="email"
+                    required> 
+                </app-input>
+
+                <app-input label="Password" tooltip="Enter your password"
+                    [validation]="password.touched && password.errors? password.errors:{}"
+                >
+                    <input type="text"  formControlName="firstName"/> -->
+                    <!-- <input type="password" class="form-control" #password="ngModel" name="password" 
+                    [(ngModel)]="login.password" required> 
+                </app-input>
+                <button type="submit" [disabled]="!loginForm.valid">Login</button> -->
+            </form>
+        </div>
+    </div>
+</div>
