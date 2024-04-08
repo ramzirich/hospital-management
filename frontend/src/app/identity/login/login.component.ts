@@ -3,18 +3,22 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { InputComponent } from '../../shared/input/input.component';
 import { Login, User } from '../../models/Users';
 import { CommonModule } from '@angular/common';
+import { IdentityService } from '../identity.service';
+import { AccountTemplateComponent } from '../../shared/account-template/account-template.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, InputComponent, FormsModule, CommonModule],
+  imports: [ ReactiveFormsModule, InputComponent, FormsModule, CommonModule, AccountTemplateComponent,
+    ReactiveFormsModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
-  constructor(){
+  constructor(private identityService: IdentityService){
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -33,7 +37,9 @@ export class LoginComponent implements OnInit{
   
   onSubmit(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value)
+      this.identityService.login(this.loginForm.value).subscribe({
+        next:user =>console.log(user) 
+      });
     }
   }
 

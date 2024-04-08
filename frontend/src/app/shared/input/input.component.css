@@ -1,0 +1,13 @@
+.input{
+    display: flex;
+    flex-direction: column;
+    gap:5px
+}
+
+.is-invalid{
+    color: red;
+}
+
+.is-valid{
+    color: blue;
+}

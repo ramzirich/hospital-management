@@ -1,6 +1,10 @@
-<label title="{{tooltip}}">{{label}}</label>
-<ng-content></ng-content>
-<div class="text-danger">
-    <small>This is required</small>
+<div class="input">
+    <label>{{label}}</label>
+    <input type={{type}} 
+        [formControl]="control"
+        placeholder="{{label}}"
+        [ngClass]="(control.touched)? control.invalid? 'is-invalid':'is-valid':null">
+    
+    <div *ngIf="control.errors?.['required']">{{label}} is required</div>
+    <div *ngIf="control.errors?.['email']">Invalid email format</div>
 </div>
-<!-- <input [type]="type" placeholder="placeholder"/> -->

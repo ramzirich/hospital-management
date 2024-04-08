@@ -18,9 +18,19 @@
             </li>
         </ul>
     </div>
-    <div class="right-container">
-        <button (click)="goToLogin()">Login</button>
-        <button (click)="goToRegister()">Register</button>
-    </div>
+    <ng-container *ngIf="(this.identityService.currentUser$ | async) === null">
+        <div class="right-container">
+            <button (click)="goToLogin()">Login</button>
+            <button (click)="goToRegister()">Register</button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="this.identityService.currentUser$ | async as user">
+        <div class="right-container">
+            <p>Welcom {{user.firstName}} </p>
+            <button (click)="logout()">Logout</button>
+        </div>
+    </ng-container>
+    
 </div>
 <router-outlet></router-outlet>
